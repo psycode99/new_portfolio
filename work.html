@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Section</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a1e23;
+            color: white;
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+        }
+        nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between; /* Changed to space-between */
+            align-items: center;
+        }
+
+          /* Styling for the logo */
+          .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .logo .dot {
+            color: #39FF14; /* Green color for the dot */
+        }
+      
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 2px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .hire-btn {
+            background-color: #39FF14;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: opacity 0.2s;
+        }
+
+        .hire-btn:hover {
+            opacity: 0.9;
+        }
+
+
+        .work-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .title-container {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .decorative-bar {
+            position: absolute;
+            left: 0;
+            top: -10px;
+            width: 120px;
+            height: 8px;
+            background-color: #39FF14;
+        }
+
+        .decorative-bar-bg {
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            width: 180px;
+            height: 8px;
+            background-color: #2a2e35;
+            z-index: -1;
+        }
+
+        .work-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .work-card {
+            background-color: #2a2e35;
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: block;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.2);
+            color: white;
+        }
+
+        .work-image-container {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .work-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .work-card:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+
+        .work-content {
+            padding: 1.5rem;
+        }
+
+        .work-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-description {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            background-color: #2a2e35;
+            transition: all 0.2s ease;
+            margin-top: 3rem;
+        }
+
+        .github-link:hover {
+            background-color: #39FF14;
+            color: #1a1e23;
+            transform: translateY(-2px);
+        }
+
+        .github-link i {
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .work-title {
+                font-size: 2.5rem;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .decorative-bar {
+                width: 80px;
+            }
+
+            .decorative-bar-bg {
+                width: 120px;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: #1a1e23;
+                flex-direction: column;
+                padding: 80px 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+                z-index: 200;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 100;
+            }
+    
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <nav>
+        <div class="logo">
+            <span>i</span><span class="dot">.</span><span>George</span>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="skills.html">Skills</a>
+            <a href="work.html">Work</a>
+            <a href="mailto:favourgeorgedev@gmail.com" class="hire-btn">Hire me</a>
+        </div>
+    </nav>
+    <section class="work-section">
+        <div class="title-container">
+            <div class="decorative-bar"></div>
+            <div class="decorative-bar-bg"></div>
+            <h1 class="work-title">WORK</h1>
+        </div>
+
+        <div class="work-grid">
+            <!-- Work Card 1 -->
+            <a href="https://rental-api-gateway.onrender.com/" class="work-card">
+                <div class="work-image-container">
+                    <img src="r-d.PNG" alt="Project 1" class="work-image">
+                    <div class="image-overlay">
+                        <span class="overlay-text">View Project</span>
+                    </div>
+                </div>
+                <div class="work-content">
+                    <h3 class="work-name">Rently</h3>
+                    <p class="work-description">Rently is a robust platform designed to streamline property management and rental processes. Built using Flask and FastAPI for a scalable and efficient backend, it leverages PostgreSQL for reliable data storage.</p>
+                </div>
+            </a>
+
+            <!-- Work Card 2 -->
+            <a href="https://psycode99.pythonanywhere.com/" class="work-card">
+                <div class="work-image-container">
+                    <img src="tempsnip.png" alt="Project 2" class="work-image">
+                    <div class="image-overlay">
+                        <span class="overlay-text">View Project</span>
+                    </div>
+                </div>
+                <div class="work-content">
+                    <h3 class="work-name">Ordr</h3>
+                    <p class="work-description">Ordr is an online order management tool designed for e-commerce entrepreneurs and traditional small businesses transitioning to online delivery. Developed using Flask, it offers a clean user interface and secure privacy features to manage orders across multiple businesses efficiently.</p>
+                </div>
+            </a>
+
+            <!-- Work Card 3 -->
+            <a href="https://github.com/psycode99/analysis-of-deaths-involving-the-police-in-US/blob/master/Analysis%20of%20Deaths%20involving%20Police%20in%20the%20United%20States.ipynb" class="work-card">
+                <div class="work-image-container">
+                    <img src="p-c.PNG" alt="Project 3" class="work-image">
+                    <div class="image-overlay">
+                        <span class="overlay-text">View Project</span>
+                    </div>
+                </div>
+                <div class="work-content">
+                    <h3 class="work-name">Police Shootings Analysis</h3>
+                    <p class="work-description">This data analysis provides a comprehensive examination of fatalities associated with law enforcement in the U.S. Utilizing data analysis and visualization techniques, the study aims to uncover patterns and trends in these incidents.</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- GitHub Link -->
+        <div class="text-center">
+            <a href="https://github.com/psycode99" class="github-link">
+                <i class="bi bi-github"></i>
+                <span>View More on GitHub</span>
+            </a>
+        </div>
+    </section>
+</body>
+<script src="index.js"></script>
+</html>

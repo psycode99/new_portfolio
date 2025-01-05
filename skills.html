@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+          
+    <title>Skills Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #1a1e23;
+            color: white;
+            line-height: 1.6;
+        }
+
+        nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between; /* Changed to space-between */
+            align-items: center;
+        }
+
+          /* Styling for the logo */
+          .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .logo .dot {
+            color: #39FF14; /* Green color for the dot */
+        }
+
+      
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 2px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .hire-btn {
+            background-color: #39FF14;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: opacity 0.2s;
+        }
+
+        .hire-btn:hover {
+            opacity: 0.9;
+        }
+
+        .skills-section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .title-container {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .decorative-bar {
+            position: absolute;
+            left: 0;
+            top: -10px;
+            width: 120px;
+            height: 8px;
+            background-color: #39FF14;
+        }
+
+        .decorative-bar-bg {
+            position: absolute;
+            left: 20px;
+            top: 5px;
+            width: 180px;
+            height: 8px;
+            background-color: #2a2e35;
+            z-index: -1;
+        }
+
+        .skills-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .skills-container {
+            margin-top: 2rem;
+        }
+
+        .skills-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            color: #39FF14;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background-color: #2a2e35;
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-size: 1rem;
+            color: #e5e7eb;
+        }
+
+        .skill-level {
+            margin-top: 0.5rem;
+            height: 4px;
+            background-color: #3a3f48;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .skill-level-fill {
+            height: 100%;
+            background-color: #39FF14;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .skills-title {
+                font-size: 2.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 1rem;
+            }
+
+            .decorative-bar {
+                width: 80px;
+            }
+
+            .decorative-bar-bg {
+                width: 120px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background-color: #1a1e23;
+                flex-direction: column;
+                padding: 80px 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+                z-index: 200;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 100;
+            }
+    
+            .overlay.active {
+                display: block;
+            }
+        }
+    </style>
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <nav>
+        <div class="logo">
+            <span>i</span><span class="dot">.</span><span>George</span>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Me</a>
+            <a href="skills.html">Skills</a>
+            <a href="work.html">Work</a>
+            <a href="#contact" class="hire-btn">Hire me</a>
+        </div>
+    </nav>
+
+    <section class="skills-section">
+        <div class="title-container">
+            <div class="decorative-bar"></div>
+            <div class="decorative-bar-bg"></div>
+            <h1 class="skills-title">SKILLS</h1>
+            <p>
+                Here’s a curated glimpse into my skillset — Python for backend tinkering, machine learning models that occasionally behave, and data science experiments that may or may not have accidentally predicted my coffee consumption patterns. Of course, this list isn’t exhaustive — Let’s just say, if it involves code and caffeine, I’m probably game.
+            </p>
+        </div>
+
+        <div class="skills-container">
+            <div class="skills-category">
+                <h2 class="category-title">Programming Languages</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 70%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="skill-name">Python</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="skill-name">Java</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 60%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                           
+            <i class="devicon-go-plain"></i>
+          
+                        </div>
+                        <div class="skill-name">Golang</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h2 class="category-title">Frameworks & Libraries</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                           
+                        <i class="devicon-flask-original"></i>
+          
+                        </div>
+                        <div class="skill-name">Flask</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <div class="skill-name">Node.js</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 72%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            
+           
+                            <i class="devicon-fastapi-plain"></i>
+          
+                        </div>
+                        <div class="skill-name">FastAPI</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            
+            <i class="devicon-django-plain"></i>
+          
+                        </div>
+                        <div class="skill-name">Django</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h2 class="category-title">Data Science and Machine Learning</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                           
+                       
+                   <i class="devicon-pandas-plain"></i>
+          
+          
+                        </div>
+                        <div class="skill-name">Pandas</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            
+                     <i class="devicon-numpy-plain"></i>
+          
+                        </div>
+                        <div class="skill-name">Numpy</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 72%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            
+                            <i class="devicon-matplotlib-plain"></i>
+                          
+                                  </div>
+                        <div class="skill-name">Matplotlib</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            
+            <i class="devicon-tensorflow-original"></i>
+                    
+                        </div>
+                        <div class="skill-name">Tensorflow</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h2 class="category-title">Tools & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <div class="skill-name">Git</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            
+                  <i class="devicon-postman-plain"></i>
+          
+                        </div>
+                        <div class="skill-name">Postman</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                           
+            <i class="devicon-docker-plain-wordmark"></i>
+          
+                        </div>
+                        <div class="skill-name">Docker</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            
+            <i class="devicon-kubernetes-plain"></i>
+          
+                        </div>
+                        <div class="skill-name">Kubernetes</div>
+                        <div class="skill-level">
+                            <div class="skill-level-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="index.js"></script>
+</html>
